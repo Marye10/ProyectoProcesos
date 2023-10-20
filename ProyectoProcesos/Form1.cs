@@ -50,8 +50,7 @@ namespace ProyectoProcesos
             {
                 for (int i = 0; i < elementos_fila; i++)
                 {
-                   // Maquina.Rows.Add(aleat.Next(1, 1000000000), aleat.Next(1, 1000000000), aleat.Next(1, 1000000000));
-                   Maquina.Rows.Add(1,2,3);
+                    Maquina.Rows.Add(aleat.Next(1, 1000000000), aleat.Next(1, 1000000000), aleat.Next(1, 1000000000))
                 }
                  division = 1 / elementos_fila;
                  resultado_probabilidad =(float)Math.Pow(division, 3);
@@ -59,28 +58,29 @@ namespace ProyectoProcesos
                  MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            for (int i = 0; i < elementos_fila-1; i++)
+
+            for (int j = 0; j < 2; j++)
             {
-                for (int j= 0; j<2 ; j++)
+                for (int i = 0; i < elementos_fila; i++)
                 {
-                    bool esIgual = false;
-                    if (Maquina.Rows[i].Cells[j].Value == Maquina.Rows[i + 1].Cells[j + 1].Value)
+                    for (int l = j + 1; l < 2; l++)
                     {
-                        esIgual = true;
-                        MessageBox.Show("Si es repetidos", "Resultado",
-                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                       
-
-
+                        for (int k = 0; k < elementos_fila; k++)
+                        {
+                            if (Maquina.Rows[i].Cells[j].Value != null && Maquina.Rows[k].Cells[l].Value != null &&
+                                Maquina.Rows[i].Cells[j].Value.Equals(Maquina.Rows[k].Cells[l].Value))
+                            {
+                                MessageBox.Show("Se encontró un valor repetido en la columna " + (j + 1) + " y columna " + (l + 1) + ": " + Maquina.Rows[i].Cells[j].Value, "Resultado",
+                                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
                     }
-                    MessageBox.Show(Maquina.Rows[i].Cells[j].Value.ToString(), "Resultado",
-                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show(Maquina.Rows[i + 1].Cells[j + 1].Value.ToString(), "Resultado",
-                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-         
-           
+
+
+
+
 
         }
 
